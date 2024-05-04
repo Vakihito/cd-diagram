@@ -8,6 +8,10 @@ First the Friedman test is performed to reject the null hypothesis, we then proc
 We can clearly see how on average ```clf3``` and ```clf5``` were the best algorithms over the 15 datasets. 
 A thick horizontal line groups a set of classifiers that are not significantly different. 
 
+This will read the example.csv file them will generate the image `cd-diagram.png`.
+The inputs are:
+ - metric_col (default 'accuracy')
+
 ## Relevant projects
 ### Deep learning for time series classification: a review 
 In this [paper](https://arxiv.org/abs/1809.04356v3) we used the critical difference diagram to compare the recent deep learning models for time series classification where we evaluated 9 different architectures on 85 different datasets from the [UCR/UEA archive](https://www.cs.ucr.edu/~eamonn/time_series_data/). 
