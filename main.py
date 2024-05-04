@@ -8,6 +8,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib
+import os
 
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
@@ -15,6 +16,7 @@ import matplotlib.pyplot as plt
 matplotlib.rcParams['font.family'] = 'sans-serif'
 matplotlib.rcParams['font.sans-serif'] = 'Arial'
 metric_col = 'f1'
+csv_data_path = os.environ['csv_data_path']
 
 import operator
 import math
@@ -380,6 +382,6 @@ def wilcoxon_holm(alpha=0.05, df_perf=None):
     return p_values, average_ranks, max_nb_datasets
 
 
-df_perf = pd.read_csv('example.csv', index_col=False)
+df_perf = pd.read_csv(csv_data_path, index_col=False)
 
 draw_cd_diagram(df_perf=df_perf, title=metric_col, labels=True)
