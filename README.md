@@ -10,7 +10,7 @@ A thick horizontal line groups a set of classifiers that are not significantly d
 
 This will read the example.csv file them will generate the image `cd-diagram.png`.
 The inputs are:
- - metric_col (default 'accuracy')
+ - metric_col (default 'f1')
 
 ## Relevant projects
 ### Deep learning for time series classification: a review 
