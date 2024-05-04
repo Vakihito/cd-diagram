@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 
 matplotlib.rcParams['font.family'] = 'sans-serif'
 matplotlib.rcParams['font.sans-serif'] = 'Arial'
+metric_col = 'accuracy'
 
 import operator
 import math
@@ -316,7 +317,7 @@ def wilcoxon_holm(alpha=0.05, df_perf=None):
                        ['classifier_name'])
     # test the null hypothesis using friedman before doing a post-hoc analysis
     friedman_p_value = friedmanchisquare(*(
-        np.array(df_perf.loc[df_perf['classifier_name'] == c]['accuracy'])
+        np.array(df_perf.loc[df_perf['classifier_name'] == c]['metric_col'])
         for c in classifiers))[1]
     if friedman_p_value >= alpha:
         # then the null hypothesis over the entire classifiers cannot be rejected
@@ -331,14 +332,14 @@ def wilcoxon_holm(alpha=0.05, df_perf=None):
         # get the name of classifier one
         classifier_1 = classifiers[i]
         # get the performance of classifier one
-        perf_1 = np.array(df_perf.loc[df_perf['classifier_name'] == classifier_1]['accuracy']
+        perf_1 = np.array(df_perf.loc[df_perf['classifier_name'] == classifier_1]['metric_col']
                           , dtype=np.float64)
         for j in range(i + 1, m):
             # get the name of the second classifier
             classifier_2 = classifiers[j]
             # get the performance of classifier one
             perf_2 = np.array(df_perf.loc[df_perf['classifier_name'] == classifier_2]
-                              ['accuracy'], dtype=np.float64)
+                              ['metric_col'], dtype=np.float64)
             # calculate the p_value
             p_value = wilcoxon(perf_1, perf_2, zero_method='pratt')[1]
             # appen to the list
@@ -363,7 +364,7 @@ def wilcoxon_holm(alpha=0.05, df_perf=None):
     sorted_df_perf = df_perf.loc[df_perf['classifier_name'].isin(classifiers)]. \
         sort_values(['classifier_name', 'dataset_name'])
     # get the rank data
-    rank_data = np.array(sorted_df_perf['accuracy']).reshape(m, max_nb_datasets)
+    rank_data = np.array(sorted_df_perf['']).reshape(m, max_nb_datasets)
 
     # create the data frame containg the accuracies
     df_ranks = pd.DataFrame(data=rank_data, index=np.sort(classifiers), columns=
@@ -381,4 +382,4 @@ def wilcoxon_holm(alpha=0.05, df_perf=None):
 
 df_perf = pd.read_csv('example.csv', index_col=False)
 
-draw_cd_diagram(df_perf=df_perf, title='Accuracy', labels=True)
+draw_cd_diagram(df_perf=df_perf, title=metric_col, labels=True)
