@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 matplotlib.rcParams['font.family'] = 'sans-serif'
 matplotlib.rcParams['font.sans-serif'] = 'Arial'
-metric_col = 'accuracy'
+metric_col = 'f1'
 
 import operator
 import math
